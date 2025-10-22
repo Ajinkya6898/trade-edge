@@ -39,7 +39,7 @@ export function NavUser({
   const navigate = useNavigate();
   const { logout } = useAuthStore();
   const { profile } = useProfileStore();
-  const BASE_URL = "https://trade-edge.onrender.com/";
+  const BASE_URL = "https://trade-edge.onrender.com";
 
   return (
     <SidebarMenu>

@@ -56,7 +56,7 @@ export default function MyProfilePage() {
   const [avatarSrc, setAvatarSrc] = useState<string | null>(null);
   const [addressOpen, setAddressOpen] = useState(false);
   const [formData, setFormData] = useState<any | null>(null);
-  const BASE_URL = "https://trade-edge.onrender.com/";
+  const BASE_URL = "https://trade-edge.onrender.com";
 
   console.log(avatarSrc);
 
