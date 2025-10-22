@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/store/auth-store";
+import { useProfileStore } from "@/store/my-profile-store";
 
 export function NavUser({
   user,
@@ -37,6 +38,8 @@ export function NavUser({
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
   const { logout } = useAuthStore();
+  const { profile } = useProfileStore();
+  const BASE_URL = "https://trade-edge.onrender.com/";
 
   return (
     <SidebarMenu>
@@ -47,17 +50,30 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <Avatar className="h-12 w-12 rounded-xl border-2 border-sidebar-accent bg-sidebar flex items-center justify-center shadow-sm hover:scale-105 transition-transform duration-200">
+                {profile?.profilePhoto ? (
+                  <AvatarImage
+                    src={`${BASE_URL}${profile.profilePhoto}`}
+                    alt={user.name}
+                    className="object-cover rounded-xl"
+                  />
+                ) : (
+                  <AvatarFallback className="rounded-xl text-lg font-semibold bg-gray-100 text-gray-600">
+                    {user.name?.slice(0, 2).toUpperCase() || "U"}
+                  </AvatarFallback>
+                )}
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+
+              <div className="grid flex-1 text-left text-sm leading-tight ml-3">
+                <span className="truncate font-medium text-base">
+                  {user.name}
+                </span>
                 <span className="text-muted-foreground truncate text-xs">
                   {user.email}
                 </span>
               </div>
-              <IconDotsVertical className="ml-auto size-4" />
+
+              <IconDotsVertical className="ml-auto size-4 text-muted-foreground hover:text-foreground transition-colors" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

@@ -13,6 +13,8 @@ import geminiRoutes from "./routes/geminiRoutes.js";
 import stockRoutes from "./routes/stockDetailsRoutes.js";
 import goalRoutes from "./routes/goalRoutes.js";
 import notesRoutes from "./routes/noteRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
+import path from "path";
 
 dotenv.config();
 
@@ -33,6 +35,8 @@ app.use("/api/gemini", geminiRoutes);
 app.use("/api/stock-details", stockRoutes);
 app.use("/api/goal", goalRoutes);
 app.use("/api/note", notesRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // Routes placeholder
 app.get("/", (req, res) => {

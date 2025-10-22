@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import api from "./api";
+import { useProfileStore } from "./my-profile-store";
 
 interface User {
   id: string;
@@ -34,7 +35,8 @@ export const useAuthStore = create<AuthState>((set) => ({
       localStorage.setItem("user", JSON.stringify(user));
 
       set({ user, token, loading: false, error: null });
-
+      const fetchProfile = useProfileStore.getState().fetchProfile;
+      await fetchProfile();
       return true;
     } catch (err: any) {
       set({
@@ -49,5 +51,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     set({ user: null, token: null });
+    useProfileStore.setState({ profile: null });
   },
 }));
