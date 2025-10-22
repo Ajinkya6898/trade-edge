@@ -44,11 +44,9 @@ ${combinedText}
 `;
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    console.log("naruto", genAI);
     const model = genAI.getGenerativeModel({
       model: "models/gemini-1.5-flash-latest",
     });
-    console.log("model", model);
     const result = await Promise.race([
       model.generateContent(prompt),
       new Promise((_, reject) =>

@@ -10,6 +10,7 @@ import MyProfilePage from "@/app/auth/Profile";
 import TradingJournal from "@/app/journal/trade-journal";
 import CapitalManagement from "@/app/capital/capital";
 import GoalTracking from "@/app/goal-tracking/goal-tracking";
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +28,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    index: true,
     path: "/auth/login",
     element: <LoginPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/auth/login" replace />,
   },
 ]);
 

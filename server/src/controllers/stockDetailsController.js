@@ -8,8 +8,6 @@ const BASE_URL = "https://www.alphavantage.co/query";
 const FMP_BASE_URL = "https://financialmodelingprep.com/api/v3";
 const FMP_API_KEY = process.env.FMP_API_KEY;
 
-console.log("FMP_API_KEY:", process.env.FMP_API_KEY);
-
 // Helper function to format Indian stock symbols for Alpha Vantage
 const formatIndianSymbol = (symbol) => {
   // Alpha Vantage uses format: SYMBOL.BSE or SYMBOL.NSE
